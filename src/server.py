@@ -1,6 +1,9 @@
 import yaml
 import SocketServer
+import threading
 
+from agents import econ_agent
+import command
 from game import Game
 
 config = yaml.load(open('../cfg/server.yml'))
@@ -46,12 +49,28 @@ class AITCPServer(SocketServer.BaseRequestHandler):
             game.set_choke_data(lines.next())
             game.set_bases_data(lines.next())
     
+        n = 0
         for line in self.readlines():
+            
             line = line.split(':')
             status, units = line[0], line[1:]
             game.set_my_status(status)
-            
-            self.request.send('commands')
+            game.set_units(units)
+            if n == 0:
+                print "Launching Agent"
+                t = threading.Thread(target=econ_agent.loop, args=(game,command))
+                t.start()
+            n += 1
+#            if n % 25 == 0:
+#                print ""
+#                for unit in game.units:
+#                    if True:#unit.player_id == game.me['id']:
+#                        print unit.type, unit.id , unit.x, unit.y
+            commands = 'commands'
+            if not command.queue.empty():
+                commands += command.queue.get()
+                print commands
+            self.request.send(commands)
             
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     pass

@@ -2,6 +2,6 @@ bind_ip: "0.0.0.0"
 port: 12345
 
 allow_user_control: True
-complete_information: False
-log_commands: False
+complete_information: True
+log_commands: True
 terrain_analysis: True
