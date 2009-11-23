@@ -1,8 +1,18 @@
+import yaml
+from collections import namedtuple
+
+names = yaml.load(open("../cfg/id_names.yml"))
+unit_names = dict((val, key) for key,val in names['units'].items())
+
+Unit = namedtuple('Unit', 'id player_id type x y hp shields energy build_timer train_timer research_timer upgrade_timer order_timer order resources addon num_mines')
+
 class Game:
     def __init__(self):
         self.other_players = []
         self.me = {}
         self.players_by_id = {}
+        self.units = []
+        self.my_units = []
         pass
     
     def set_player_info(self,line):
@@ -51,5 +61,15 @@ class Game:
             status[data] = int(status[data])
         del status['tech_status']
         del status['upgrade_status']
-        print status
+        self.me.update(status)
+    
+    def set_units(self, raw_units):
+        self.units = []
+        for raw_unit in raw_units:
+            unit = Unit._make(raw_unit.split(";"))
+            unit = unit._replace(type = unit_names[int(unit.type)],
+                                 id = int(unit.id))
+            self.units.append(unit)
+        self.my_units = [unit for unit in self.units if unit.player_id == self.me['id']]
+                
     
