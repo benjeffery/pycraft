@@ -19,6 +19,10 @@ using namespace BWAPI;
 #include <sstream>
 #include <string>
 
+/** additional includes **/
+#include <iostream>
+#include <fstream>
+
 /** port to connect to on the java side */
 #define PORTNUM 12345
 
@@ -969,39 +973,42 @@ void exportStaticData() {
 }
 
 /**
- * Establishes a connection with the ProxyBot.
+ * Establishes a connection with the ProxyBot Server.
  *
  * Returns -1 if the connection fails
  */
 int initSocket() 
 {
-      int sockfd;
-      int size;
-      struct hostent *h;
-      struct sockaddr_in client_addr;
-      char myname[256];
-      WORD wVersionRequested;
-      WSADATA wsaData;
+    std::ifstream address_file("server.txt");
+    std::string server_address, server_port;
 
-      wVersionRequested = MAKEWORD( 1, 1 );
-      WSAStartup( wVersionRequested, &wsaData );
-      gethostname(myname, 256);      
-      h=gethostbyname(myname);
+    if (address_file.is_open())
+    {
+        while (!address_file.eof())
+        {
+            std::getline(address_file, server_address);
+            std::getline(address_file, server_port);
+        }
+        address_file.close();
+    }
 
-      size = sizeof(client_addr);
-      memset(&client_addr , 0 , sizeof(struct sockaddr_in));
-      memcpy((char *)&client_addr.sin_addr , h -> h_addr ,h -> h_length);
-     
-	  client_addr.sin_family = AF_INET;
-      client_addr.sin_port = htons(PORTNUM);
-      client_addr.sin_addr =  *((struct in_addr*) h->h_addr) ;
-      if ((sockfd = socket(AF_INET , SOCK_STREAM , 0)) == -1){
-		  return -1;
-      }
+    int sockfd, size;
+    struct sockaddr_in client_addr;
 
-      if ((connect(sockfd , (struct sockaddr *)&client_addr , sizeof(client_addr))) == -1){
-		  return -1;
-	  }
+    WORD wVersionRequested;
+    WSADATA wsaData;
 
-	  return sockfd;
+    wVersionRequested = MAKEWORD(1, 1);
+    WSAStartup(wVersionRequested, &wsaData);
+
+    memset(&client_addr, 0, sizeof(struct sockaddr_in));
+
+    client_addr.sin_family = AF_INET;
+    client_addr.sin_port = htons(atoi(server_port.c_str()));
+    client_addr.sin_addr.s_addr = inet_addr(server_address.c_str());
+
+    if ((sockfd = socket(AF_INET , SOCK_STREAM , 0)) == -1) return -1;
+    if ((connect(sockfd, (struct sockaddr *)&client_addr, sizeof(client_addr))) == -1) return -1;
+
+    return sockfd;
 }
