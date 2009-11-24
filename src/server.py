@@ -6,8 +6,7 @@ from agents import econ_agent
 import command
 from game import Game
 
-config = yaml.load(open('../cfg/server.yml'))
-
+config = yaml.load(open('cfg/server.yml'))
 
 class AITCPServer(SocketServer.BaseRequestHandler):
     
@@ -75,8 +74,3 @@ class AITCPServer(SocketServer.BaseRequestHandler):
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     pass
 
-if __name__ == '__main__':
-    print 'Creating server at',config['bind_ip']+':'+str(config['port'])
-    server = ThreadedTCPServer((config['bind_ip'],config['port']), AITCPServer)
-    server.allow_reuse_address = True
-    server.serve_forever()

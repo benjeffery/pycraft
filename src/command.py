@@ -2,8 +2,8 @@ import yaml
 import Queue
 import game
 
-commands = yaml.load(open('../cfg/commands.yml'))
-names = yaml.load(open('../cfg/id_names.yml'))
+commands = yaml.load(open('cfg/commands.yml'))
+names = yaml.load(open('cfg/id_names.yml'))
 
 queue = Queue.Queue()
 

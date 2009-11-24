@@ -1,7 +1,7 @@
 import yaml
 from collections import namedtuple
 
-names = yaml.load(open("../cfg/id_names.yml"))
+names = yaml.load(open("cfg/id_names.yml"))
 unit_names = dict((val, key) for key,val in names['units'].items())
 order_names = dict((val, key) for key,val in names['orders'].items())
 
