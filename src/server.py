@@ -49,9 +49,9 @@ class AITCPServer(SocketServer.BaseRequestHandler):
             game.set_choke_data(lines.next())
             game.set_bases_data(lines.next())
     
+        command.game_speed(int(config['speed']))
         n = 0
         for line in self.readlines():
-            
             line = line.split(':')
             status, units = line[0], line[1:]
             game.set_my_status(status)

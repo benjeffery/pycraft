@@ -36,13 +36,22 @@ def add_command_to_queue(command_name, unit, *args):
         else:
             raw_args[i] = arg
     commands[command_name]['id']
-    command_string = ":%d;%d;%d;%d;%d"%(
-                    commands[command_name]['id'],
-                    unit.id,
-                    raw_args[0],
-                    raw_args[1],
-                    raw_args[2]
-                    )
+    if type(unit) != game.Unit:
+        command_string = ":%d;%d;%d;%d;%d"%(
+                        commands[command_name]['id'],
+                        unit,
+                        raw_args[0],
+                        raw_args[1],
+                        raw_args[2]
+                        )
+    else:
+        command_string = ":%d;%d;%d;%d;%d"%(
+                        commands[command_name]['id'],
+                        unit.id,
+                        raw_args[0],
+                        raw_args[1],
+                        raw_args[2]
+                        )
     queue.put(command_string)
 
 def wrap_command(command_name):
