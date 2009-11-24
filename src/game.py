@@ -3,6 +3,7 @@ from collections import namedtuple
 
 names = yaml.load(open("../cfg/id_names.yml"))
 unit_names = dict((val, key) for key,val in names['units'].items())
+order_names = dict((val, key) for key,val in names['orders'].items())
 
 Unit = namedtuple('Unit', 'id player_id type x y hp shields energy build_timer train_timer research_timer upgrade_timer order_timer order resources addon num_mines')
 
@@ -68,6 +69,7 @@ class Game:
         for raw_unit in raw_units:
             unit = Unit._make(raw_unit.split(";"))
             unit = unit._replace(type = unit_names[int(unit.type)],
+                                 order = order_names[int(unit.order)],
                                  id = int(unit.id))
             self.units.append(unit)
         self.my_units = [unit for unit in self.units if unit.player_id == self.me['id']]

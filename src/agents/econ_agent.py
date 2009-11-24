@@ -9,7 +9,7 @@ def dist(unit1, unit2):
 
 def loop(game, command):
     while True:
-        idle_probes = [unit for unit in game.my_units if unit.type == 'protoss_probe' and unit.order == "3"]
+        idle_probes = [unit for unit in game.my_units if unit.type == 'protoss_probe' and unit.order == "player_guard"]
         minerals = [unit for unit in game.units if unit.type == 'resource_mineral_field']
         if not minerals:
             continue

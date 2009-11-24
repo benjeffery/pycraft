@@ -12,6 +12,10 @@ a = sum(len(dict_) for dict_ in names.values())
 id_of = {}
 for dict_ in names.values():
     id_of.update(dict_)
+names = [key for dict_ in names.values() for key in dict_.keys()]
+for n in names:
+    if names.count(n) > 1:
+        print n
 assert(a == len(id_of))
 
 def add_command_to_queue(command_name, unit, *args):

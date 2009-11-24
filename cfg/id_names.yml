@@ -141,29 +141,29 @@ units:
 techs:
   stim_packs: 0
   lockdown: 1
-  emp_shockwave: 2
+  tech_emp_shockwave: 2
   spider_mines: 3
   scanner_sweep: 4
   tank_siege_mode: 5
-  defensive_matrix: 6
-  irradiate: 7
+  tech_defensive_matrix: 6
+  tech_irradiate: 7
   yamato_gun: 8
   cloaking_field: 9
   personnel_cloaking: 10
   burrowing: 11
   infestation: 12
   spawn_broodlings: 13
-  dark_swarm: 14
-  plague: 15
-  consume: 16
-  ensnare: 17
+  tech_dark_swarm: 14
+  tech_plague: 15
+  tech_consume: 16
+  tech_ensnare: 17
   parasite: 18
   psionic_storm: 19
   hallucination: 20
   recall: 21
-  stasis_field: 22
+  tech_stasis_field: 22
   archon_warp: 23
-  restoration: 24
+  tech_restoration: 24
   disruption_web: 25
   mind_control: 27
   dark_archon_meld: 28
@@ -230,3 +230,195 @@ upgrades:
   upgrade_none: 61
   upgrade_unknown: 62
   
+orders:
+  die: 0
+  stop: 1
+  guard: 2
+  player_guard: 3
+  turret_guard: 4
+  bunker_guard: 5
+  move: 6
+  reaver_stop: 7
+  attack_1: 8
+  attack_2: 9
+  attack_unit: 10
+  attack_fixed_range: 11
+  attack_tile: 12
+  hover: 13
+  attack_move: 14
+  infest_mine_1: 15
+  nothing_1: 16
+  powerup_1: 17
+  tower_guard: 18
+  tower_attack: 19
+  vulture_mine: 20
+  stay_in_range: 21
+  turret_attack: 22
+  nothing_2: 23
+  nothing_3: 24
+  drone_start_build: 25
+  drone_build: 26
+  infest_mine_2: 27
+  infest_mine_3: 28
+  infest_mine_4: 29
+  build_terran: 30
+  build_protoss_1: 31
+  build_protoss_2: 32
+  constructing_building: 33
+  repair_1: 34
+  repair_2: 35
+  place_addon: 36
+  build_addon: 37
+  train: 38
+  rally_point_1: 39
+  rally_point_2: 40
+  zerg_birth: 41
+  morph_1: 42
+  morph_2: 43
+  build_self_1: 44
+  zerg_build_self: 45
+  build_5: 46
+  enternyduscanal: 47
+  build_self_2: 48
+  follow: 49
+  carrier: 50
+  carrier_ignore_1: 51
+  carrier_stop: 52
+  carrier_attack_1: 53
+  carrier_attack_2: 54
+  carrier_ignore_2: 55
+  carrier_fight: 56
+  hold_position_1: 57
+  reaver: 58
+  reaver_attack_1: 59
+  reaver_attack_2: 60
+  reaver_fight: 61
+  reaver_hold: 62
+  train_fighter: 63
+  strafe_unit_1: 64
+  strafe_unit_2: 65
+  recharge_shields_1: 66
+  recharge_shields_2: 67
+  shield_battery: 68
+  return: 69
+  drone_land: 70
+  building_land: 71
+  building_lift_off: 72
+  drone_lift_off: 73
+  lift_off: 74
+  research_tech: 75
+  upgrade: 76
+  larva: 77
+  spawning_larva: 78
+  harvest_1: 79
+  harvest_2: 80
+  move_to_gas: 81
+  wait_for_gas: 82
+  harvest_gas: 83
+  return_gas: 84
+  move_to_minerals: 85
+  wait_for_minerals: 86
+  mining_minerals: 87
+  harvest_3: 88
+  harvest_4: 89
+  return_minerals: 90
+  harvest_5: 91
+  enter_transport: 92
+  pickup_1: 93
+  pickup_2: 94
+  pickup_3: 95
+  pickup_4: 96
+  powerup_2: 97
+  siege_mode: 98
+  tank_mode: 99
+  watch_target: 100
+  init_creep_growth: 101
+  spread_creep: 102
+  stopping_creep_growth: 103
+  guardian_aspect: 104
+  warping_archon: 105
+  completing_archon_summon: 106
+  hold_position_2: 107
+  hold_position_3: 108
+  cloak: 109
+  decloak: 110
+  unload: 111
+  moveunload: 112
+  fire_yamato_gun_1: 113
+  fire_yamato_gun_2: 114
+  magna_pulse: 115
+  burrow: 116
+  burrowed: 117
+  unburrow: 118
+  dark_swarm: 119
+  cast_parasite: 120
+  summon_broodlings: 121
+  emp_shockwave: 122
+  nuke_wait: 123
+  nuke_train: 124
+  nuke_launch: 125
+  nuke_paint: 126
+  nuke_unit: 127
+  nuke_ground: 128
+  nuke_track: 129
+  init_arbiter: 130
+  cloak_nearby_units: 131
+  place_mine: 132
+  right_click_action: 133
+  sap_unit: 134
+  sap_location: 135
+  hold_position_4: 136
+  teleport: 137
+  teleport_to_location: 138
+  place_scanner: 139
+  scanner: 140
+  defensive_matrix: 141
+  psi_storm: 142
+  irradiate: 143
+  plague: 144
+  consume: 145
+  ensnare: 146
+  stasis_field: 147
+  hallucination_1: 148
+  hallucination_2: 149
+  reset_collision_1: 150
+  reset_collision_2: 151
+  patrol: 152
+  ctf_cop_init: 153
+  ctf_cop_1: 154
+  ctf_cop_2: 155
+  computer_ai: 156
+  atk_move_ep: 157
+  harass_move: 158
+  ai_patrol: 159
+  guard_post: 160
+  rescue_passive: 161
+  neutral: 162
+  computer_return: 163
+  init_psi_provider: 164
+  self_destrucing: 165
+  critter: 166
+  hidden_gun: 167
+  open_door: 168
+  close_door: 169
+  hide_trap: 170
+  reveal_trap: 171
+  enable_doodad: 172
+  disable_doodad: 173
+  warpin: 174
+  medic: 175
+  medic_heal_1: 176
+  heal_move: 177
+  medic_hold_position: 178
+  medic_heal_2: 179
+  restoration: 180
+  cast_disruption_web: 181
+  cast_mind_control: 182
+  warping_dark_archon: 183
+  cast_feedback: 184
+  cast_optical_flare: 185
+  cast_maelstrom: 186
+  junk_yard_dog: 187
+  fatal: 188
+  order_none: 189
+  order_unknown: 190
