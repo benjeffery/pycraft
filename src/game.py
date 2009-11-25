@@ -5,7 +5,7 @@ names = yaml.load(open("cfg/id_names.yml"))
 unit_names = dict((val, key) for key,val in names['units'].items())
 order_names = dict((val, key) for key,val in names['orders'].items())
 
-Unit = namedtuple('Unit', 'id player_id type x y hp shields energy build_timer train_timer research_timer upgrade_timer order_timer order resources addon num_mines')
+Unit = namedtuple('Unit', 'id player_id type x y hp shields energy build_timer train_timer research_timer upgrade_timer order_timer order resources addon num_mines v_x v_y')
 
 class Game:
     def __init__(self):
