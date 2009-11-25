@@ -14,6 +14,7 @@ class Game:
         self.players_by_id = {}
         self.units = []
         self.my_units = []
+        self.active = False
         pass
     
     def set_player_info(self,line):

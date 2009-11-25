@@ -1,7 +1,9 @@
 bind_ip: "0.0.0.0"
 port: 12345
 
-#speed: 3
+speed: 0
+restart_on_change: True
+
 allow_user_control: True
 complete_information: True
 log_commands: True

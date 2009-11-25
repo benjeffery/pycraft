@@ -8,7 +8,7 @@ def dist(unit1, unit2):
     return math.sqrt(dx*dx + dy*dy)
 
 def loop(game, command):
-    while True:
+    while game.active:
         idle_probes = [unit for unit in game.my_units if unit.type == 'protoss_probe' and unit.order == "player_guard"]
         minerals = [unit for unit in game.units if unit.type == 'resource_mineral_field']
         if not minerals:
@@ -18,4 +18,7 @@ def loop(game, command):
             best_mineral, distance = sorted([(mineral, dist(mineral, probe)) for mineral in minerals],key=itemgetter(1))[0]
             command.right_click_unit(probe, best_mineral)
         time.sleep(.1)
+    print "Agent ending"
+
+print __file__,"loaded"
 
