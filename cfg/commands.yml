@@ -1,41 +1,45 @@
-attack_move: {id: 1, num_args: 2} #x,y
-attack_unit: {id: 2, num_args: 1} #unit_id
-right_click: {id: 3, num_args: 2} #x,y
-right_click_unit: {id: 4, num_args: 1} #unit_id
-train: {id: 5, num_args: 1} #unit_type
-build: {id: 6, num_args: 3} #x,y,unit_type
-build_addon: {id: 7, num_args: 1} #unit_type 
-research: {id: 8, num_args: 1} #research_type
-upgrade: {id: 9, num_args: 1} #upgrade_type
-stop: {id: 10, num_args: 0}
-hold_position: {id: 11, num_args: 0}
-patrol: {id: 12, num_args: 2} #x,y
-follow: {id: 13, num_args: 1} #unit_id
-set_rally_position: {id: 14, num_args: 2} #x,y
-set_rally_unit: {id: 15, num_args: 1} #unit_id
-repair: {id: 16, num_args: 1} #unit_id
-morph: {id: 17, num_args: 1} #unit_type
-burrow: {id: 18, num_args: 0} 
-unburrow: {id: 19, num_args: 0}
-siege: {id: 20, num_args: 0}
-unsiege: {id: 21, num_args: 0}
-cloak: {id: 22, num_args: 0}
-decloak: {id: 23, num_args: 0}
-lift: {id: 24, num_args: 0}
-land: {id: 25, num_args: 2} #x,y
-load: {id: 26, num_args: 1} #unit_id
-unload: {id: 27, num_args: 1} #unit_id
-unload_all: {id: 28, num_args: 0} 
-unload_all_position: {id: 29, num_args: 2} #x,y
-cancel_construction: {id: 30, num_args: 0}
-halt_construction: {id: 31, num_args: 0}
-cancel_morph: {id: 32, num_args: 0}
-cancel_train: {id: 33, num_args: 0}
-cancel_train_slot: {id: 34, num_args: 1} #slot_num
-cancel_addon: {id: 35, num_args: 0}
-cancel_research: {id: 36, num_args: 0}
-cancel_upgrade: {id: 37, num_args: 0}
-usetech: {id: 38, num_args: 1} #tech_type
-usetech_position: {id: 39, num_args: 3} #tech_type,x,y
-usetech_target: {id: 40, num_args: 2} #tech_type, unit_id
-game_speed: {id: 41, num_args: 1} # lower is faster
+unit:
+  attack_move: {id: 1, num_args: 2} #x,y
+  attack_unit: {id: 2, num_args: 1} #unit_id
+  right_click: {id: 3, num_args: 2} #x,y
+  right_click_unit: {id: 4, num_args: 1} #unit_id
+  train: {id: 5, num_args: 1} #unit_type
+  build: {id: 6, num_args: 3} #x,y,unit_type
+  build_addon: {id: 7, num_args: 1} #unit_type 
+  research: {id: 8, num_args: 1} #research_type
+  upgrade: {id: 9, num_args: 1} #upgrade_type
+  stop: {id: 10, num_args: 0}
+  hold_position: {id: 11, num_args: 0}
+  patrol: {id: 12, num_args: 2} #x,y
+  follow: {id: 13, num_args: 1} #unit_id
+  set_rally_position: {id: 14, num_args: 2} #x,y
+  set_rally_unit: {id: 15, num_args: 1} #unit_id
+  repair: {id: 16, num_args: 1} #unit_id
+  morph: {id: 17, num_args: 1} #unit_type
+  burrow: {id: 18, num_args: 0} 
+  unburrow: {id: 19, num_args: 0}
+  siege: {id: 20, num_args: 0}
+  unsiege: {id: 21, num_args: 0}
+  cloak: {id: 22, num_args: 0}
+  decloak: {id: 23, num_args: 0}
+  lift: {id: 24, num_args: 0}
+  land: {id: 25, num_args: 2} #x,y
+  load: {id: 26, num_args: 1} #unit_id
+  unload: {id: 27, num_args: 1} #unit_id
+  unload_all: {id: 28, num_args: 0} 
+  unload_all_position: {id: 29, num_args: 2} #x,y
+  cancel_construction: {id: 30, num_args: 0}
+  halt_construction: {id: 31, num_args: 0}
+  cancel_morph: {id: 32, num_args: 0}
+  cancel_train: {id: 33, num_args: 0}
+  cancel_train_slot: {id: 34, num_args: 1} #slot_num
+  cancel_addon: {id: 35, num_args: 0}
+  cancel_research: {id: 36, num_args: 0}
+  cancel_upgrade: {id: 37, num_args: 0}
+  usetech: {id: 38, num_args: 1} #tech_type
+  usetech_position: {id: 39, num_args: 3} #tech_type,x,y
+  usetech_target: {id: 40, num_args: 2} #tech_type, unit_id
+
+game:
+  game_speed: {id: 41, num_args: 1} #lower is faster, 0 min
+  restart_game: {id: 42, num_args: 0} 

@@ -46,7 +46,9 @@ namespace BWAPI
       virtual TilePosition getInitialTilePosition() const = 0;
       virtual double getDistance(Unit* target) const = 0;
       virtual double getDistance(Position target) const = 0;
-      virtual int getCurrentDirection() const = 0;
+      virtual double getAngle() const = 0;
+      virtual double getVelocityX() const = 0;
+      virtual double getVelocityY() const = 0;
 
       virtual Unit* getTarget() const = 0;
       virtual Position getTargetPosition() const = 0;
@@ -71,6 +73,7 @@ namespace BWAPI
       virtual Position getRallyPosition() const = 0;
       virtual Unit* getRallyUnit() const = 0;
       virtual Unit* getAddon() const = 0;
+      virtual int getUpgradeLevel(UpgradeType upgrade) const = 0;
 
       virtual bool exists() const = 0;
       virtual bool isAccelerating() const = 0;

@@ -18,9 +18,9 @@ for n in names:
         print n
 assert(a == len(id_of))
 
-def add_command_to_queue(command_name, unit, *args):
+def add_unit_command_to_queue(command_name, unit, *args):
     global queue
-    if commands[command_name]['num_args'] != len(args):
+    if commands['unit'][command_name]['num_args'] != len(args):
         print "Bad command args", command_name, len(args)
             
     #Convert any strings in the args to ids
@@ -35,31 +35,44 @@ def add_command_to_queue(command_name, unit, *args):
             raw_args[i] = arg.id
         else:
             raw_args[i] = arg
-    commands[command_name]['id']
-    if type(unit) != game.Unit:
-        command_string = ":%d;%d;%d;%d;%d"%(
-                        commands[command_name]['id'],
-                        unit,
-                        raw_args[0],
-                        raw_args[1],
-                        raw_args[2]
-                        )
-    else:
-        command_string = ":%d;%d;%d;%d;%d"%(
-                        commands[command_name]['id'],
-                        unit.id,
-                        raw_args[0],
-                        raw_args[1],
-                        raw_args[2]
-                        )
+    command_string = ":%d;%d;%d;%d;%d"%(
+                     commands['unit'][command_name]['id'],
+                     unit.id,
+                     raw_args[0],
+                     raw_args[1],
+                     raw_args[2])
     queue.put(command_string)
 
-def wrap_command(command_name):
+def add_game_command_to_queue(command_name, *args):
+    global queue
+    if commands['game'][command_name]['num_args'] != len(args):
+        print "Bad command args", command_name, len(args)
+            
+    raw_args = [0,0,0]
+    for i,arg in enumerate(args):
+        raw_args[i] = arg;
+    command_string = ":%d;%d;%d;%d;%d"%(
+                     commands['game'][command_name]['id'],
+                     raw_args[0],
+                     raw_args[1],
+                     raw_args[2],
+                     0)
+    queue.put(command_string)
+
+
+def wrap_unit_command(command_name):
     def closure(unit, *args):
-        return add_command_to_queue(command_name, unit, *args)
+        return add_unit_command_to_queue(command_name, unit, *args)
+    return closure
+
+def wrap_game_command(command_name):
+    def closure(*args):
+        return add_game_command_to_queue(command_name, *args)
     return closure
 
 #Inject the commands into this modules namespace
-for command in commands:
-    globals()[command] = wrap_command(command)
-    
+for command in commands['unit']:
+    globals()[command] = wrap_unit_command(command)
+for command in commands['game']:
+    globals()[command] = wrap_game_command(command)
+

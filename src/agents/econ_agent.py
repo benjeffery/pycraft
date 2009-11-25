@@ -18,3 +18,4 @@ def loop(game, command):
             best_mineral, distance = sorted([(mineral, dist(mineral, probe)) for mineral in minerals],key=itemgetter(1))[0]
             command.right_click_unit(probe, best_mineral)
         time.sleep(.1)
+

@@ -23,9 +23,6 @@ using namespace BWAPI;
 #include <iostream>
 #include <fstream>
 
-/** port to connect to on the java side */
-#define PORTNUM 12345
-
 /** size of recv buffer for commands from the Proxy bot */
 #define recvBufferSize 4096
 char recieveBuffer[recvBufferSize];
@@ -97,20 +94,20 @@ void BaliBali::onStart()
 
 	// First, check if we are already connected to the Java proxy
 	if (proxyBotSocket == -1) {
-		Broodwar->sendText("Connecting to ProxyBot");		
+		Broodwar->sendText("Connecting to BaliBali");		
 		proxyBotSocket = initSocket();
 
 		// connected failed
 		if (proxyBotSocket == -1) {
-			Broodwar->sendText("ProxyBot connected failed");
+			Broodwar->sendText("BaliBali connected failed");
 			return;
 		}
 		else {
-			Broodwar->sendText("Sucessfully connected to ProxyBot");
+			Broodwar->sendText("Sucessfully connected to BaliBali");
 		}
 	}
 	else {
-		Broodwar->sendText("Already connected to ProxyBot");
+		Broodwar->sendText("Already connected to BaliBali");
 	}
 
 	// 1. initiate communication with the proxy bot
@@ -252,10 +249,10 @@ void BaliBali::onFrame()
 
 	std::set<TechType> tektypes = TechTypes::allTechTypes();
 	for(std::set<TechType>::iterator i=tektypes.begin();i!=tektypes.end();i++) {
-		if (Broodwar->self()->researched((*i))) {
+		if (Broodwar->self()->hasResearched((*i))) {
 			research[(*i).getID()] = 4;
 		}
-		else if (Broodwar->self()->researching((*i))) {
+		else if (Broodwar->self()->isResearching((*i))) {
 			research[(*i).getID()] = 1;
 		}
 		else {
@@ -274,11 +271,11 @@ void BaliBali::onFrame()
 
 	std::set<UpgradeType> upTypes = UpgradeTypes::allUpgradeTypes();
 	for(std::set<UpgradeType>::iterator i=upTypes.begin();i!=upTypes.end();i++) {
-		if (Broodwar->self()->upgrading((*i))) {
+		if (Broodwar->self()->isUpgrading((*i))) {
 			ups[(*i).getID()] = 4;
 		}
 		else {
-			ups[(*i).getID()] = Broodwar->self()->upgradeLevel((*i));
+			ups[(*i).getID()] = Broodwar->self()->getUpgradeLevel((*i));
 		}
 	}
 
@@ -410,6 +407,12 @@ void handleCommand(int command, int unitID, int arg0, int arg1, int arg2)
 	if (command == 41) {
 		Broodwar->sendText("Set game speed: %d", unitID);
 		Broodwar->setLocalSpeed(unitID);
+		return;
+	}
+	
+	if (command == 42) {
+		Broodwar->sendText("Restart Game", unitID);
+		Broodwar->restartGame();
 		return;
 	}
 
@@ -991,6 +994,11 @@ int initSocket()
         }
         address_file.close();
     }
+	else
+	{
+		server_address = "127.0.0.1";
+		server_port = "12345";
+	}
 
     int sockfd, size;
     struct sockaddr_in client_addr;
